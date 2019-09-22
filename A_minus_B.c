@@ -1,19 +1,20 @@
 #include <stdio.h>
 void setMinus(int*,int*,int,int);
 
-
+// @return length of array
 int len(int* array)
 {
 	return (int)(sizeof(array)/sizeof(int));
 }
-void setZero(int* array,int len)
+// set all element of array into 1
+void setToOne(int* array,int len)
 {
-	//int len = (int)(sizeof(array)/sizeof(int));
 	for(int i = 0; i < len; i++)
 	{
-		array[i] = 1;
+		array[i] = 1; 
 	}
 }
+// scaing perpose of for all array
 void scan(int* array,int len)
 {
 	//int len = (int)(sizeof(array)/sizeof(int));
@@ -22,16 +23,12 @@ void scan(int* array,int len)
 		scanf("%d",&array[i]);
 	}
 }
+// print whole array
 void print(int* array,int len)
 {
-	//int len = (int)(sizeof(array)/sizeof(int));
 	for(int i = 0; i < len; i++)
-	{
-		printf("%d , ",array[i]);
-	}
+		printf("%d,",array[i]);
 }
-
-
 
 void main()
 {	
@@ -40,28 +37,31 @@ void main()
 	printf("how many element you want to add in set ( A ): ");
 	scanf("%d",&n);
 	
-	int a[n];
-	scan(a,n);
+	int a[n]; // array size
+	scan(a,n); // get all element
 	
 	int m = 0;
 	printf("how many element you want to add in set ( B ): ");
 	scanf("%d",&m);
 	
-	int b[m];
-	scan(b,m);
+	int b[m]; // array size 
+	scan(b,m); // get all element 
 	
-	setMinus(a,b,n,m);
+	setMinus(a,b,n,m); // main function for program 
+	// complete minus and print 
 }
 
 void setMinus(int* setA,int* setB,int lenA,int lenB)
 {
-	int Sa[lenA];
-	int Sb[lenB];
-	setZero(Sa,lenA);
-	setZero(Sb,lenB);
-	_Bool flag = 0;
-	int find_index = 0;
+	int Sa[lenA]; // set A string represent
+
+	setToOne(Sa,lenA); // assume all are not in B
 	
+	int flag = 0; // flag value
+	int find_index = 0; // storing temp index
+	
+
+	/*process of removing element*/
 	for(int i = 0;i < lenB;i++)
 	{
 		for(int j = 0;j < lenA;j++)
@@ -79,13 +79,20 @@ void setMinus(int* setA,int* setB,int lenA,int lenB)
 			flag = 0;
 		}
 	}
-	print(Sa,lenA);
-	/*
+
+
+	/*print last output A-B*/
+	printf("A - B = {");
+
 	for(int j = 0;j < lenA;j++)
 	{
 		if(Sa[j] != 0)
 		{
-			printf("%d,",Sa[j]);
-		}			
-	}*/
+			printf("%d,",setA[j]);
+		}
+	}
+
+	printf("}");
+
+	printf("\n\n");
 }
