@@ -1,0 +1,33 @@
+void intersectionOfArray(int setA[],int setB[],int lenA,int lenB)
+{
+	int final[lenA+lenB];
+	int index = 0;
+
+	for (int i = 0; i < lenA; ++i)
+	{
+		for (int j = 0; j < lenB; ++j)
+		{
+			if (setA[i] == setB[j])
+			{
+				final[index++] = setA[i];
+				break;
+			}
+		}
+	}
+	int size = index;
+	for (int i = 0; i < size; ++i)
+	{
+		for (int j = i+1; j < size; j++)
+		
+			if(final[i] == final[j])
+			{
+				for(int k=j; k<size; k++)
+					final[k] = final[k + 1];
+				size--;
+				j--;
+				index--;
+			}
+		
+	}
+	print(final,index);
+}
